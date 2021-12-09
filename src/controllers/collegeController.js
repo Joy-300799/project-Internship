@@ -5,7 +5,7 @@ const validator = require("../validator/validator");
 //POST /functionup/colleges
 const createCollege = async function(req, res) {
     try {
-        res.setHeader('Access-Control-Allow-Origin','*');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         let data = req.body;
         if (!validator.isValidRequestBody(data)) {
             return res
@@ -36,13 +36,13 @@ const createCollege = async function(req, res) {
                 });
             }
 
-            const isNameAlreadyUsed = await collegeModel.findOne({ name,isDeleted:false });
+            const isNameAlreadyUsed = await collegeModel.findOne({ name, isDeleted: false });
             if (isNameAlreadyUsed) {
                 return res
                     .status(400)
                     .send({ status: false, message: `${name} is already in used` });
             }
-            const isLogoAlreadyUsed = await collegeModel.findOne({ logoLink,isDeleted:false });
+            const isLogoAlreadyUsed = await collegeModel.findOne({ logoLink, isDeleted: false });
             if (isLogoAlreadyUsed) {
                 return res
                     .status(400)
@@ -79,22 +79,21 @@ const createCollege = async function(req, res) {
 //GET/functionup/collegeDetails
 const getCollegeDetails = async function(req, res) {
     try {
-        res.setHeader('Access-Control-Allow-Origin','*');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         let body = req.query;
-        if (!validator.isValidRequestBody(body)){
+        if (!validator.isValidRequestBody(body)) {
             return res.status(400).send({
                 status: false,
                 message: "Query not found, Please provide a valid query to fetch details",
             });
-        }
-        else {
+        } else {
             let collegeName = req.query.collegeName;
-            if(!validator.isValid(collegeName)){
-                res.status(400).send({status:false,messege:"Please provide The College Name"});
+            if (!validator.isValid(collegeName)) {
+                res.status(400).send({ status: false, messege: "Please provide The College Name" });
                 return
             }
             const lowerCollegeName = collegeName.toLowerCase();
-            let college = await collegeModel.findOne({ name: lowerCollegeName,isDeleted:false});
+            let college = await collegeModel.findOne({ name: lowerCollegeName, isDeleted: false });
             if (!college) {
                 res.status(400).send({
                     status: false,
@@ -108,7 +107,7 @@ const getCollegeDetails = async function(req, res) {
                 let logoLink = college.logoLink;
 
                 let InternsApplied = await internModel
-                    .find({ collegeId: checkId,isDeleted:false })
+                    .find({ collegeId: checkId, isDeleted: false })
                     .select({ _id: 1, name: 1, email: 1, mobile: 1 });
 
                 if (!InternsApplied.length > 0) {
@@ -118,7 +117,7 @@ const getCollegeDetails = async function(req, res) {
                         logoLink: logoLink,
                         interests: `No interns applied for ${fullName}`
                     };
-                    res.status(200).send({status: true,data:Data});
+                    res.status(200).send({ status: true, data: Data });
 
                     return;
                 } else {
@@ -144,9 +143,6 @@ const getCollegeDetails = async function(req, res) {
         });
     }
 };
-
-
-
 
 module.exports.createCollege = createCollege;
 module.exports.getCollegeDetails = getCollegeDetails;
