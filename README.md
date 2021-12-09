@@ -1,6 +1,3 @@
-# radium
-Repository for backend cohort - Radium
-
 **Open to Intern Project Requirement**
 
 **_Key points_**
@@ -18,6 +15,7 @@ College Model
 { name: { mandatory, unique, example iith}, fullName: {mandatory, example `Indian Institute of Technology, Hyderabad`}, logoLink: {mandatory}, isDeleted: {boolean, default: false} }
 
 **Intern Model**
+
 { name: {mandatory}, email: {mandatory, valid email, unique}, mobile: {mandatory, valid mobile number, unique}, collegeId: {ObjectId, ref to college model, isDeleted: {boolean, default: false}}
 
 
