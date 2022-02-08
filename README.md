@@ -1,3 +1,6 @@
+# radium
+Repository for backend cohort - Radium
+
 **Open to Intern Project Requirement**
 
 **_Key points_**
@@ -15,7 +18,6 @@ College Model
 { name: { mandatory, unique, example iith}, fullName: {mandatory, example `Indian Institute of Technology, Hyderabad`}, logoLink: {mandatory}, isDeleted: {boolean, default: false} }
 
 **Intern Model**
-
 { name: {mandatory}, email: {mandatory, valid email, unique}, mobile: {mandatory, valid mobile number, unique}, collegeId: {ObjectId, ref to college model, isDeleted: {boolean, default: false}}
 
 
@@ -55,21 +57,24 @@ _**Testing**_
 
 Response
 Successful Response structure
-
+```yaml
 {
   status: true,
   data: {
 
   }
 }
+```
 
 Error Response structure
-
+```yaml
 {
   status: false,
   message: ""
 }
+```
 Collections samples
+```yaml
 College
 {
     "name" : "iith",
@@ -87,12 +92,11 @@ Intern
     "mobile" : "90000900000",
     "collegeId" : ObjectId("888771129c9ea621dc7f5e3b")
 }
+```
 
 Response samples
-
-
+```yaml
 College details
-
 
 {
   "data": {
@@ -133,3 +137,4 @@ College details
     
   }
 }
+```
