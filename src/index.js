@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(multer().any());
 
-mongoose.connect("mongodb+srv://users-open-to-all:hiPassword123@cluster0.uh35t.mongodb.net/Joy_Bhattacharya-DB?authSource=admin&replicaSet=atlas-wwe75z-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://Joy-DB:joy123@cluster0.e8rbz.mongodb.net/Internship", { useNewUrlParser: true })
     .then(() => console.log('MongoDB is ready for action !'))
     .catch(err => console.log(err))
 
